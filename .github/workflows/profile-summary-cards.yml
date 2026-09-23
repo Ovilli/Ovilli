@@ -2,8 +2,8 @@ name: GitHub Profile Summary Cards
 
 on:
   schedule:
-    - cron: "0 */24 * * *"
-  workflow_dispatch:
+    - cron: "0 0 * * *" # Every day at 00:00 UTC
+  workflow_dispatch: # Allows manual updates
 
 permissions:
   contents: write
@@ -24,3 +24,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
         with:
           USERNAME: ${{ github.repository_owner }}
+          BRANCH_NAME: main
+          AUTO_PUSH: true
